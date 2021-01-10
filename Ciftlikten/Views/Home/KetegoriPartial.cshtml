@@ -1,0 +1,15 @@
+﻿
+@model IEnumerable<Ciftlikten.Models.Categories>
+
+@{
+    Layout = null;
+}
+
+<div class="sidebar-heading">
+    <i class="fas fa-fw fa-chart-area"></i>
+    Kategoriler
+</div>
+@foreach (var item in Model)
+{
+    <a class="nav-link" href=" /Home/KategoriDetay/@item.categoryId">@item.categoryName</a>
+}

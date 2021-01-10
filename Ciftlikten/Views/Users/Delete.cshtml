@@ -1,0 +1,30 @@
+﻿@model Ciftlikten.Models.Users
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+<div class="container-fluid">
+    <ol class="breadcrumb bg-gradient-danger">
+        <li class="breadcrumb-item active text-white">Üye Sil</li>
+    </ol>
+</div> 
+
+<div class="col-lg-4 mb-4">
+    <h3>@Model.userName @Model.userLastName</h3> 
+    <p>@Model.email</p>
+    <p>@Model.nickname</p>
+    <p>@Model.Authority.authorityName</p>
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-outline-danger" /> |
+            @Html.ActionLink("Geri Dön", "Index", null, new { @class = "btn btn-outline-secondary" })
+        </div>
+    }
+</div>

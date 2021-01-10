@@ -1,0 +1,31 @@
+﻿@model Ciftlikten.Models.Comments
+
+@{
+    ViewBag.Title = "Delete";
+
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+
+
+<div class="container-fluid">
+    <ol class="breadcrumb bg-gradient-danger">
+        <li class="breadcrumb-item active text-white">Yorumu Sil</li>
+    </ol>
+</div>
+
+<div class="col-lg-4 mb-4">
+    <h3>@Model.Users.userName</h3>
+    <p>@Model.urun.urunName</p>
+    <p>@Model.commentContent</p>
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-outline-danger" /> |
+            @Html.ActionLink("Geri Dön", "Index", null, new { @class = "btn btn-outline-secondary" })
+        </div>
+    }
+</div>

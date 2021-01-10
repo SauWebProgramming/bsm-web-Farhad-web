@@ -1,0 +1,25 @@
+﻿@model Ciftlikten.Models.Comments
+
+@{
+    ViewBag.Title = "Details";
+
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <ol class="breadcrumb bg-gradient-danger">
+        <li class="breadcrumb-item active text-white">Yorum Detay</li>
+    </ol>
+</div>
+
+<div class="col-lg-4 mb-4">
+    <h3>@Model.Users.nickname</h3>
+    <p>@Model.urun.urunName</p>
+    <p>@Model.commentContent</p>
+    <a class="btn btn-outline-primary" href="@Url.Action("Edit","Comments" , new { id = Model.commentsId })">
+        Yorumu Güncelle
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+    |
+    @Html.ActionLink("Geri Dön", "Index",null,new {@class=("btn btn-outline-succes") })
+</div>

@@ -1,0 +1,27 @@
+﻿@model Ciftlikten.Models.Users
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <ol class="breadcrumb bg-gradient-danger">
+        <li class="breadcrumb-item active text-white">Üye Profil</li>
+    </ol>
+</div>
+
+<div class="col-lg-4 mb-5">
+    <img width="500" height="500" class="img-fluid rounded mb-3 mb-md-0" src="@Model.userPhoto" alt="">
+</div>
+
+<div class="col-lg-4 mb-4">
+    <h3>@Model.nickname</h3>
+    <p>@Model.userName</p>
+    <p>@Model.userLastName</p>
+    <p>@Model.email</p>
+    <p>@Model.password</p>
+    <a class="btn btn-primary" href="@Url.Action("Edit","Users" , new { id = Model.userId })">
+        Profilimi Güncelle
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+</div>

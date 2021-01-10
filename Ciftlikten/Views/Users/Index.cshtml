@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Ciftlikten.Models.Users>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!-- DataTales Example -->
+<div class="container-fluid">
+    <div class="card shadow mb-5">
+        <div class="card-header py-4">
+            <h6 class="m-0 font-weight-bold text-danger">Üyeler</h6>
+
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th class="m-0 font-weight-bold text-danger">Üye Adı</th>
+                            <th class="m-0 font-weight-bold text-danger">Üye Soyadı</th>
+                            <th class="m-0 font-weight-bold text-danger">Eposta Adresi</th>
+                            <th class="m-0 font-weight-bold text-danger">Kullanıcı Adı</th>
+                            <th class="m-0 font-weight-bold text-danger">Yetkisi</th>
+                            <th class="m-0 font-weight-bold text-danger">İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.userName)</td>
+                                <td>@Html.DisplayFor(modelItem => item.userLastName)</td>
+                                <td>@Html.DisplayFor(modelItem => item.email)</td>
+                                <td>@Html.DisplayFor(modelItem => item.nickname)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Authority.authorityName)</td>
+                                <td>
+                                    @Html.ActionLink("Sil", "Delete", new { id = item.userId }, new { @class = "btn btn-danger" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

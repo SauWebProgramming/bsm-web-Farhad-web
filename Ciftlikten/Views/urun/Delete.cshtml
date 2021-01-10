@@ -1,0 +1,34 @@
+﻿@model Ciftlikten.Models.urun
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+    <ol class="breadcrumb bg-gradient-danger">
+        <li class="breadcrumb-item active text-white">urun Sil</li>
+    </ol>
+</div>
+
+<div class="col-lg-3 mb-5">
+    <img width="500" height="500" class="img-fluid rounded mb-3 mb-md-0" src="@Model.image" alt="">
+</div>
+
+<div class="col-lg-4 mb-4">
+    <h3>@Model.urunName</h3>
+    <p>@Model.Categories.categoryName</p>
+    <p>@Model.urunType</p>
+    <p>@Model.publisher</p>
+    <p>@Model.information</p>
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-outline-danger" /> |
+            @Html.ActionLink("Geri Dön", "Index",null,new {@class="btn btn-outline-secondary" })
+        </div>
+    }
+</div>

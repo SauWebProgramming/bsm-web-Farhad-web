@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Ciftlikten.Models.Categories>
+
+@{
+    ViewBag.Title = "Index";
+
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+<div class="container-fluid">
+    <div class="card shadow mb-5">
+        <div class="card-header py-4">
+            <h6 class="m-0 font-weight-bold text-danger">Kategoriler   @Html.ActionLink("Yeni Kategori Oluştur", "Create", null, new { @class = "btn btn-success" })</h6>
+
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th class="m-0 font-weight-bold text-danger">Kategori Adı</th>
+                            <th class="m-0 font-weight-bold text-danger">İşlem</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.categoryName)</td>
+
+                                <td>
+                                    @Html.ActionLink("Düzenle", "Edit", new { id = item.categoryId }, new { @class = "btn btn-warning" }) |
+                                    @Html.ActionLink("Sil", "Delete", new { id = item.categoryId }, new { @class = "btn btn-danger" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,93 @@
+﻿@model Ciftlikten.Models.urun
+
+@{
+    ViewBag.Title = "urunDetay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <ol class="breadcrumb bg-gradient-danger">
+        <li class="text-white">@Model.urunName</li>
+    </ol>
+</div>
+<div class="col-md-3">
+    <img width="350" class="img-fluid" src="@Model.image" alt="">
+</div>
+<div class="col-md-4">
+    <h3 class="my-3 text-danger">@Model.urunName</h3>
+    <p>
+        @Html.Raw(Model.information)
+    </p>
+</div>
+<div class="col-md-5">
+    <h3 class="my-3 text-danger">Yazar</h3>
+    <p>
+        @Html.Raw(Model.urunType)
+    </p>
+    <h3 class="my-3 text-danger">Yayınevi</h3>
+    <p>
+        @Html.Raw(Model.publisher)
+    </p>
+</div>
+<div class="col-lg-8">
+    <hr />
+    @foreach (var item in Model.Comments.ToList())
+    {
+        <div class="media mb-4">
+            <img width="50" height="50" class="d-flex mr-3 rounded-circle" src="@item.Users.userPhoto" alt="@item.Users.nickname">
+            <div class="media-body">
+                <h5 class="mt-0">@item.Users.nickname</h5>
+                @item.commentContent
+            </div>
+        </div>
+    }
+
+
+    @if (Session["uyeid"] != null)
+    {
+        <div class="card my-4">
+            <h5 class="card-header">urun Hakkında Yorumlarınız</h5>
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <textarea id="yorum" typeof="text" class="form-control" rows="3"></textarea>
+                    </div>
+                    <button id="gonder" type="submit" class="btn btn-primary">Gönder</button>
+                </form>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="card my-4">
+            <h5 class="card-header">Yorum İçin Giriş Yapınız</h5>
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <textarea id="yorum" typeof="text" class="form-control" rows="3"></textarea>
+                    </div>
+                    <a href="@Url.Action("login","Users")" class="btn btn-primary">Giriş Yap</a>
+                </form>
+            </div>
+        </div>
+    }
+</div>
+
+<script src="~/Content/vendor/jquery/jquery.min.js"></script>
+<script src="~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#gonder").click(function () {
+            var yorumunuz = $("#yorum").val();
+            $.ajax({
+                url: '/Home/Yorum/',
+                data: { yorum: yorumunuz, urunid:@Model.urunId },
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) {
+                    alert("Yorumunuz Gönderildi" + yorumunuz);}
+            });
+        });
+    })
+</script>

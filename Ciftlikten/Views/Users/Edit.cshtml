@@ -1,0 +1,77 @@
+﻿@model Ciftlikten.Models.Users
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <ol class="breadcrumb bg-gradient-danger">
+        <li class="breadcrumb-item active text-white">Profil Güncelle</li>
+    </ol>
+</div>
+<div class="col-lg-8 mb-4">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.userId)
+        <div class="control-group form-group">
+            <div class="controls">
+                <label>Adınız:</label>
+                @Html.EditorFor(model => model.userName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.userName, "", new { @class = "text-danger" })
+                <p class="help-block"></p>
+            </div>
+        </div>
+        <div class="control-group form-group">
+            <div class="controls">
+                <label>Soyadınız:</label>
+                @Html.EditorFor(model => model.userLastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.userLastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="control-group form-group">
+            <div class="controls">
+                <label>Mail Adresiniz:</label>
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="control-group form-group">
+            <div class="controls">
+                <label>Kullanıcı Adınız:</label>
+                @Html.EditorFor(model => model.nickname, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.nickname, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="control-group form-group">
+            <div class="controls">
+                <label>Şifreniz:</label>
+                @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="control-group form-group">
+            <div class="controls">
+                <label>Şifrenizi Tekrar Girin:</label>
+                @Html.EditorFor(model => model.confirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.confirmPassword, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="control-group form-group">
+            <div class="controls">
+                <label>Profil Fotoğrafı:</label>
+                @Html.EditorFor(model => model.userPhoto, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.userPhoto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div id="success"></div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Güncelle" class="btn btn-primary" />
+            </div>
+        </div>
+    }
+    @*<button type="submit" class="btn btn-primary" id="sendMessageButton">Send Message</button>*@
+</div>
